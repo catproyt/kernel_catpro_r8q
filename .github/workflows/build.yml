@@ -61,7 +61,7 @@ jobs:
       - name: Upload to Telegram
         run: |
           gitsha1=$(git rev-parse --short HEAD)
-          zip_file=$(ls not-*.zip 2>/dev/null | head -n 1)
+          zip_file=$(ls CatKernel-*.zip not-*.zip 2>/dev/null | head -n 1)
           if [ -z "$zip_file" ]; then
             echo "No zip found!"
             exit 1
@@ -74,7 +74,7 @@ jobs:
            | KernelSU: yes
            | SELinux: Enforcing" >> buildDetails.txt
           buildDetails="`cat buildDetails.txt`"
-          msg="*not\\-kernel* build for the *${DEVICE_NAME_ESCAPED} \\(${DEVICE_ESCAPED}\\)*
+          msg="*CatKernel* build for the *${DEVICE_NAME_ESCAPED} \\(${DEVICE_ESCAPED}\\)*
           * *
           \`\`\`
           $buildDetails
@@ -89,12 +89,12 @@ jobs:
 
       - name: Set ZIP File Path
         run: |
-         zip=$(ls not-*.zip 2>/dev/null | head -n1)
-         if [ -z "$zip" ]; then
-           echo "❌ No ZIP found!"
-           exit 1
-         fi
-         echo "zip_file=$zip" >> $GITHUB_ENV
+          zip=$(ls CatKernel-*.zip not-*.zip 2>/dev/null | head -n1)
+          if [ -z "$zip" ]; then
+            echo "❌ No ZIP found!"
+            exit 1
+          fi
+          echo "zip_file=$zip" >> $GITHUB_ENV
 
       - name: Set release tag
         run: echo "RELEASE_TAG=${DEVICE}-$(date +'%Y%m%d')" >> $GITHUB_ENV
@@ -124,7 +124,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.RELEASE_TAG }}
-          name: not_kernel ${{ env.KERNEL_VERSION }} for ${{ env.DEVICE_NAME }}
+          name: CatKernel ${{ env.KERNEL_VERSION }} for ${{ env.DEVICE_NAME }}
           files: ${{ env.zip_file }}
           body: |
              Clang version: ${{ env.CLANG_VERSION }}
@@ -134,6 +134,6 @@ jobs:
              SELinux: Enforcing
              Commit: ${{ env.COMMIT_HASH }}
              Build completed in: ${{ env.BUILD_DURATION }}
-              
+             
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
