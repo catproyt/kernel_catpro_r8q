@@ -12,7 +12,7 @@ NC='\033[0m'
 AK3_REPO="https://github.com/notkernel-oss/AnyKernel3"
 AK3_BRANCH="$DEVICE"
 
-ZIPNAME="not-$(date '+%Y%m%d').zip"
+ZIPNAME="CatKernel-$(date '+%Y%m%d').zip"
 TC_DIR="$(pwd)/tc/clang"
 DEFCONFIG="vendor/kona-perf_defconfig vendor/samsung/$DEVICE.config vendor/not/ksu.config vendor/not/localversion.config"
 
