@@ -14,7 +14,7 @@ AK3_BRANCH="$DEVICE"
 
 ZIPNAME="CatKernel-$(date '+%Y%m%d').zip"
 TC_DIR="$(pwd)/tc/clang"
-DEFCONFIG="vendor/kona-perf_defconfig vendor/samsung/$DEVICE.config vendor/not/ksu.config vendor/not/localversion.config"
+DEFCONFIG="vendor/kona-perf_defconfig vendor/samsung/kona-sec-common.config vendor/samsung/$DEVICE.config vendor/not/ksu.config vendor/not/localversion.config"
 
 OUT_DIR="$(pwd)/out"
 BOOT_DIR="$OUT_DIR/arch/arm64/boot"
